@@ -21,7 +21,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library
             {
                 { "HEX", true },
                 { "RGB", true },
-                { "HSL", true }
+                { "HSL", true },
             };
             ShowColorName = false;
             ActivationAction = ColorPickerActivationAction.OpenColorPickerAndThenEditor;
