@@ -87,9 +87,9 @@ namespace Hosts.Models
             var hostsBuilder = new StringBuilder();
             var commentBuilder = new StringBuilder();
 
-            for (var i = 0; i < addressHostSplit.Length; i++)
+            foreach (var t in addressHostSplit)
             {
-                var element = addressHostSplit[i].Trim();
+                var element = t.Trim();
 
                 if (string.IsNullOrWhiteSpace(element))
                 {
