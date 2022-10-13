@@ -41,15 +41,12 @@ namespace Microsoft.PowerToys.Settings.UI.Views
             ResourceLoader loader = ResourceLoader.GetForViewIndependentUse();
             var settingsUtils = new SettingsUtils();
 
-            Action stateUpdatingAction = () =>
+            void StateUpdatingAction()
             {
-                this.DispatcherQueue.TryEnqueue(() =>
-                {
-                    ViewModel.RefreshUpdatingState();
-                });
-            };
+                this.DispatcherQueue.TryEnqueue(() => { ViewModel.RefreshUpdatingState(); });
+            }
 
-            Action hideBackupAndRestoreMessageArea = () =>
+            void HideBackupAndRestoreMessageArea()
             {
                 this.DispatcherQueue.TryEnqueue(async () =>
                 {
@@ -64,7 +61,7 @@ namespace Microsoft.PowerToys.Settings.UI.Views
                         ViewModel.HideBackupAndRestoreMessageArea();
                     }
                 });
-            };
+            }
 
             var doRefreshBackupRestoreStatus = new Action<int>(RefreshBackupRestoreStatus);
 
@@ -79,8 +76,8 @@ namespace Microsoft.PowerToys.Settings.UI.Views
                 ShellPage.SendRestartAdminIPCMessage,
                 ShellPage.SendCheckForUpdatesIPCMessage,
                 string.Empty,
-                stateUpdatingAction,
-                hideBackupAndRestoreMessageArea,
+                StateUpdatingAction,
+                HideBackupAndRestoreMessageArea,
                 doRefreshBackupRestoreStatus,
                 PickSingleFolderDialog,
                 loader);

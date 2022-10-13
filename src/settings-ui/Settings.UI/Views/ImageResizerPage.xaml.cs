@@ -22,12 +22,9 @@ namespace Microsoft.PowerToys.Settings.UI.Views
             InitializeComponent();
             var settingsUtils = new SettingsUtils();
             var resourceLoader = ResourceLoader.GetForViewIndependentUse();
-            Func<string, string> loader = (string name) =>
-            {
-                return resourceLoader.GetString(name);
-            };
+            string Loader(string name) => resourceLoader.GetString(name);
 
-            ViewModel = new ImageResizerViewModel(settingsUtils, SettingsRepository<GeneralSettings>.GetInstance(settingsUtils), ShellPage.SendDefaultIPCMessage, loader);
+            ViewModel = new ImageResizerViewModel(settingsUtils, SettingsRepository<GeneralSettings>.GetInstance(settingsUtils), ShellPage.SendDefaultIPCMessage, Loader);
             DataContext = ViewModel;
         }
 
@@ -50,7 +47,7 @@ namespace Microsoft.PowerToys.Settings.UI.Views
                 dialog.PrimaryButtonClick += (s, args) =>
                 {
                     // Using InvariantCulture since this is internal and expected to be numerical
-                    bool success = int.TryParse(deleteRowButton?.CommandParameter?.ToString(), NumberStyles.Integer, CultureInfo.InvariantCulture, out int rowNum);
+                    bool success = int.TryParse(deleteRowButton.CommandParameter?.ToString(), NumberStyles.Integer, CultureInfo.InvariantCulture, out int rowNum);
                     if (success)
                     {
                         ViewModel.DeleteImageSize(rowNum);
@@ -60,7 +57,7 @@ namespace Microsoft.PowerToys.Settings.UI.Views
                         Logger.LogError("Failed to delete custom image size.");
                     }
                 };
-                var result = await dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
         }
 

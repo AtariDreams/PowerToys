@@ -32,7 +32,7 @@ namespace Hosts.Settings
 
             LoadSettingsFromJson();
 
-            _watcher = Helper.GetFileWatcher(HostsModuleName, "settings.json", () => LoadSettingsFromJson());
+            _watcher = Helper.GetFileWatcher(HostsModuleName, "settings.json", LoadSettingsFromJson);
         }
 
         private void LoadSettingsFromJson()

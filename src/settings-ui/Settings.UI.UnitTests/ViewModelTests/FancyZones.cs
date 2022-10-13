@@ -91,7 +91,7 @@ namespace ViewModelTests
 
         private Mock<ISettingsUtils> mockFancyZonesSettingsUtils;
 
-        private Func<string, int> sendMockIPCConfigMSG = msg => { return 0; };
+        private Func<string, int> sendMockIPCConfigMSG = msg => 0;
 
         [TestInitialize]
         public void SetUpStubSettingUtils()

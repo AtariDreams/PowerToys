@@ -240,7 +240,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
 
             // Reordering colors with buttons: disable first and last buttons
             ColorFormats[0].CanMoveUp = false;
-            ColorFormats[ColorFormats.Count - 1].CanMoveDown = false;
+            ColorFormats[^1].CanMoveDown = false;
 
             ColorFormats.CollectionChanged += ColorFormats_CollectionChanged;
         }
@@ -257,7 +257,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
                 }
 
                 ColorFormats[0].CanMoveUp = false;
-                ColorFormats[ColorFormats.Count - 1].CanMoveDown = false;
+                ColorFormats[^1].CanMoveDown = false;
             }
 
             UpdateColorFormats();

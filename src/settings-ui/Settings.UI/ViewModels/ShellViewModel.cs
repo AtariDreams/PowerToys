@@ -57,9 +57,9 @@ namespace Microsoft.PowerToys.Settings.UI.ViewModels
             set { Set(ref selected, value); }
         }
 
-        public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new RelayCommand(OnLoaded));
+        public ICommand LoadedCommand => loadedCommand ??= new RelayCommand(OnLoaded);
 
-        public ICommand ItemInvokedCommand => itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+        public ICommand ItemInvokedCommand => itemInvokedCommand ??= new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked);
 
         public ShellViewModel()
         {
