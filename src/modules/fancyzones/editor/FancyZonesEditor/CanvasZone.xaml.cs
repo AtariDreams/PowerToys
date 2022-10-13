@@ -35,10 +35,6 @@ namespace FancyZonesEditor
             HeightLabel.Text = Height.ToString(CultureInfo.CurrentCulture);
         }
 
-        private CanvasLayoutModel model;
-
-        private int zoneIndex;
-
         public enum ResizeMode
         {
             BottomEdge,
@@ -336,9 +332,9 @@ namespace FancyZonesEditor
             snappyY = NewMagneticSnapper(false, ResizeMode.BothEdges);
         }
 
-        public CanvasLayoutModel Model { get => model; set => model = value; }
+        public CanvasLayoutModel Model { get; set; }
 
-        public int ZoneIndex { get => zoneIndex; set => zoneIndex = value; }
+        public int ZoneIndex { get; set; }
 
         public void FocusZone()
         {

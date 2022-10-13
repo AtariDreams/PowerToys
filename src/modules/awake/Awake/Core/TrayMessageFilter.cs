@@ -18,9 +18,7 @@ namespace Awake.Core
 {
     public class TrayMessageFilter : IMessageFilter
     {
-        private static SettingsUtils? _moduleSettings;
-
-        private static SettingsUtils ModuleSettings { get => _moduleSettings; set => _moduleSettings = value; }
+        private static SettingsUtils ModuleSettings { get; set; }
 
         private static ManualResetEvent? _exitSignal;
 

@@ -34,15 +34,8 @@ namespace FancyZonesEditor
 
         private ThemeManager _themeManager;
 
-        public static bool DebugMode
-        {
-            get
-            {
-                return _debugMode;
-            }
-        }
+        public static bool DebugMode { get; private set; }
 
-        private static bool _debugMode;
         private bool _isDisposed;
 
         private CancellationTokenSource NativeThreadCTS { get; set; }
@@ -50,7 +43,7 @@ namespace FancyZonesEditor
         [Conditional("DEBUG")]
         private void DebugModeCheck()
         {
-            _debugMode = true;
+            DebugMode = true;
         }
 
         public App()

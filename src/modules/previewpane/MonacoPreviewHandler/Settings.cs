@@ -60,9 +60,7 @@ namespace Microsoft.PowerToys.PreviewHandler.Monaco
         /// <summary>
         /// Max file size for displaying (in bytes).
         /// </summary>
-        private readonly long _maxFileSize = 50000;
-
-        public long MaxFileSize => _maxFileSize;
+        public long MaxFileSize { get; } = 50000;
 
         /// <summary>
         /// Gets the color of the window background.

@@ -57,7 +57,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
             _doNotActivateOnGameMode = Settings.Properties.DoNotActivateOnGameMode.Value;
             _roundCornersEnabled = Settings.Properties.RoundCornersEnabled.Value;
             _excludedApps = Settings.Properties.ExcludedApps.Value;
-            _windows11 = Helper.Windows11();
+            Windows11 = Helper.Windows11();
 
             // set the callback functions value to hangle outgoing IPC message.
             SendConfigMSG = ipcMSGCallBackFunc;
@@ -234,15 +234,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
             }
         }
 
-        public bool Windows11
-        {
-            get => _windows11;
-
-            set
-            {
-                _windows11 = value;
-            }
-        }
+        public bool Windows11 { get; set; }
 
         public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -260,6 +252,5 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
         private bool _doNotActivateOnGameMode;
         private bool _roundCornersEnabled;
         private string _excludedApps;
-        private bool _windows11;
     }
 }

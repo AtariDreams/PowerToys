@@ -22,8 +22,6 @@ namespace ColorPicker.Mouse
         private readonly DispatcherTimer _timer = new DispatcherTimer();
         private readonly MouseHook _mouseHook;
         private readonly IUserSettings _userSettings;
-        private System.Windows.Point _previousMousePosition = new System.Windows.Point(-1, 1);
-        private Color _previousColor = Color.Transparent;
         private bool _colorFormatChanged;
 
         [ImportingConstructor]
@@ -42,8 +40,8 @@ namespace ColorPicker.Mouse
             _mouseHook = new MouseHook();
             _userSettings = userSettings;
             _userSettings.CopiedColorRepresentation.PropertyChanged += CopiedColorRepresentation_PropertyChanged;
-            _previousMousePosition = GetCursorPosition();
-            _previousColor = GetPixelColor(_previousMousePosition);
+            CurrentPosition = GetCursorPosition();
+            CurrentColor = GetPixelColor(CurrentPosition);
         }
 
         public event EventHandler<Color> MouseColorChanged;
@@ -54,21 +52,9 @@ namespace ColorPicker.Mouse
 
         public event MouseUpEventHandler OnMouseDown;
 
-        public System.Windows.Point CurrentPosition
-        {
-            get
-            {
-                return _previousMousePosition;
-            }
-        }
+        public System.Windows.Point CurrentPosition { get; private set; } = new System.Windows.Point(-1, 1);
 
-        public Color CurrentColor
-        {
-            get
-            {
-                return _previousColor;
-            }
-        }
+        public Color CurrentColor { get; private set; } = Color.Transparent;
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -78,16 +64,16 @@ namespace ColorPicker.Mouse
         private void UpdateMouseInfo()
         {
             var mousePosition = GetCursorPosition();
-            if (_previousMousePosition != mousePosition)
+            if (CurrentPosition != mousePosition)
             {
-                _previousMousePosition = mousePosition;
+                CurrentPosition = mousePosition;
                 MousePositionChanged?.Invoke(this, mousePosition);
             }
 
             var color = GetPixelColor(mousePosition);
-            if (_previousColor != color || _colorFormatChanged)
+            if (CurrentColor != color || _colorFormatChanged)
             {
-                _previousColor = color;
+                CurrentColor = color;
                 _colorFormatChanged = false;
                 MouseColorChanged?.Invoke(this, color);
             }
@@ -141,7 +127,7 @@ namespace ColorPicker.Mouse
             }
 
             var zoomIn = e.Delta > 0;
-            OnMouseWheel?.Invoke(this, new Tuple<System.Windows.Point, bool>(_previousMousePosition, zoomIn));
+            OnMouseWheel?.Invoke(this, new Tuple<System.Windows.Point, bool>(CurrentPosition, zoomIn));
         }
 
         private void MouseHook_OnMouseDown(object sender, Point p)
@@ -162,7 +148,7 @@ namespace ColorPicker.Mouse
                 _timer.Stop();
             }
 
-            _previousMousePosition = new System.Windows.Point(-1, 1);
+            CurrentPosition = new System.Windows.Point(-1, 1);
             _mouseHook.OnMouseDown -= MouseHook_OnMouseDown;
             _mouseHook.OnMouseWheel -= MouseHook_OnMouseWheel;
 

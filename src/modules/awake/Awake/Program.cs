@@ -40,11 +40,10 @@ namespace Awake
         // the pull request is issued.
         private static readonly string BuildId = "ARBITER_01312022";
 
-        private static Mutex? _mutex;
         private static FileSystemWatcher? _watcher;
         private static SettingsUtils? _settingsUtils;
 
-        public static Mutex LockMutex { get => _mutex; set => _mutex = value; }
+        public static Mutex LockMutex { get; set; }
 
         private static Logger? _log;
 

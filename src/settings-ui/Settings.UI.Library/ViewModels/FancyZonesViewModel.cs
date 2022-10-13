@@ -27,8 +27,6 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
 
         private string settingsConfigFileFolder = string.Empty;
 
-        private bool _windows11;
-
         private enum MoveWindowBehaviour
         {
             MoveWindowBasedOnZoneIndex = 0,
@@ -115,10 +113,10 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
             _zoneNumberColor = !string.IsNullOrEmpty(numberColor) ? numberColor : ConfigDefaults.DefaultFancyzonesNumberColor;
 
             _isEnabled = GeneralSettingsConfig.Enabled.FancyZones;
-            _windows11 = Helper.Windows11();
+            Windows11 = Helper.Windows11();
 
             // Disable setting on windows 10
-            if (!_windows11 && DisableRoundCornersOnWindowSnap)
+            if (!Windows11 && DisableRoundCornersOnWindowSnap)
             {
                 DisableRoundCornersOnWindowSnap = false;
             }
@@ -844,7 +842,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
             }
         }
 
-        public bool Windows11 => _windows11;
+        public bool Windows11 { get; }
 
         private void LaunchEditor()
         {

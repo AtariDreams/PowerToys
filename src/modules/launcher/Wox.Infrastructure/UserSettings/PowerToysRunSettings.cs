@@ -14,15 +14,8 @@ namespace Wox.Infrastructure.UserSettings
     public class PowerToysRunSettings : BaseModel
     {
         private string _hotkey = "Alt + Space";
-        private string _previousHotkey = string.Empty;
 
-        public string PreviousHotkey
-        {
-            get
-            {
-                return _previousHotkey;
-            }
-        }
+        public string PreviousHotkey { get; private set; } = string.Empty;
 
         public string Hotkey
         {
@@ -35,7 +28,7 @@ namespace Wox.Infrastructure.UserSettings
             {
                 if (_hotkey != value)
                 {
-                    _previousHotkey = _hotkey;
+                    PreviousHotkey = _hotkey;
                     _hotkey = value;
                     OnPropertyChanged(nameof(Hotkey));
                 }

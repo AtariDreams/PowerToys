@@ -98,65 +98,13 @@ public class SettingsService
         }
     }
 
-    private PowerAccentActivationKey _activationKey = PowerAccentActivationKey.Both;
+    public PowerAccentActivationKey ActivationKey { get; set; } = PowerAccentActivationKey.Both;
 
-    public PowerAccentActivationKey ActivationKey
-    {
-        get
-        {
-            return _activationKey;
-        }
+    public Position Position { get; set; } = Position.Top;
 
-        set
-        {
-            _activationKey = value;
-        }
-    }
+    public int InputTime { get; set; } = 200;
 
-    private Position _position = Position.Top;
-
-    public Position Position
-    {
-        get
-        {
-            return _position;
-        }
-
-        set
-        {
-            _position = value;
-        }
-    }
-
-    private int _inputTime = 200;
-
-    public int InputTime
-    {
-        get
-        {
-            return _inputTime;
-        }
-
-        set
-        {
-            _inputTime = value;
-        }
-    }
-
-    private Language _selectedLang;
-
-    public Language SelectedLang
-    {
-        get
-        {
-            return _selectedLang;
-        }
-
-        set
-        {
-            _selectedLang = value;
-        }
-    }
+    public Language SelectedLang { get; set; }
 }
 
 public enum Position

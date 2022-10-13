@@ -8,13 +8,11 @@ namespace Hosts.Helpers
 {
     public class ElevationHelper : IElevationHelper
     {
-        private readonly bool _isElevated;
-
-        public bool IsElevated => _isElevated;
+        public bool IsElevated { get; }
 
         public ElevationHelper()
         {
-            _isElevated = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
+            IsElevated = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 }

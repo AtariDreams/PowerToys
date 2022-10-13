@@ -27,11 +27,10 @@ namespace Hosts.Helpers
         private readonly IUserSettings _userSettings;
         private readonly IElevationHelper _elevationHelper;
         private readonly IFileSystemWatcher _fileSystemWatcher;
-        private readonly string _hostsFilePath;
         private bool _backupDone;
         private bool _disposed;
 
-        public string HostsFilePath => _hostsFilePath;
+        public string HostsFilePath { get; }
 
         public event EventHandler FileChanged;
 
@@ -44,7 +43,7 @@ namespace Hosts.Helpers
             _userSettings = userSettings;
             _elevationHelper = elevationHelper;
 
-            _hostsFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), @"System32\drivers\etc\hosts");
+            HostsFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), @"System32\drivers\etc\hosts");
 
             _fileSystemWatcher = _fileSystem.FileSystemWatcher.CreateNew();
             _fileSystemWatcher.Path = _fileSystem.Path.GetDirectoryName(HostsFilePath);

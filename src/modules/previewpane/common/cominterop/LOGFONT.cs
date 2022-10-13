@@ -82,13 +82,7 @@ namespace Common.ComInterlop
         /// <summary>
         /// Gets or sets array of wide characters that contains a null-terminated string that specifies the typeface name of the font. The length of the string must not exceed 32 characters, including the NULL terminator.
         /// </summary>
-        public string LfFaceName
-        {
-            get { return _lfFaceName; }
-            set { _lfFaceName = value; }
-        }
-
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        private string _lfFaceName;
+        [field: MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+        public string LfFaceName { get; set; }
     }
 }

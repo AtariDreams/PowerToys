@@ -130,7 +130,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
             RunningAsUserDefaultText = runAsUserText;
             RunningAsAdminDefaultText = runAsAdminText;
 
-            _isAdmin = isAdmin;
+            IsAdmin = isAdmin;
 
             _updatingState = UpdatingSettingsConfig.State;
             _newAvailableVersion = UpdatingSettingsConfig.NewVersion;
@@ -146,7 +146,6 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
         private bool _startup;
         private bool _isElevated;
         private bool _runElevated;
-        private bool _isAdmin;
         private int _themeIndex;
 
         private bool _autoDownloadUpdates;
@@ -157,11 +156,6 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
         private string _updateCheckedDate = string.Empty;
 
         private bool _isNewVersionDownloading;
-        private bool _isNewVersionChecked;
-
-        private bool _settingsBackupRestoreMessageVisible;
-        private string _settingsBackupMessage;
-        private string _backupRestoreMessageSeverity;
 
         // Gets or sets a value indicating whether run powertoys on start-up.
         public bool Startup
@@ -255,13 +249,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
         }
 
         // Gets a value indicating whether the user is part of administrators group.
-        public bool IsAdmin
-        {
-            get
-            {
-                return _isAdmin;
-            }
-        }
+        public bool IsAdmin { get; }
 
         public bool AutoDownloadUpdates
         {
@@ -583,37 +571,13 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
             }
         }
 
-        public bool IsNewVersionCheckedAndUpToDate
-        {
-            get
-            {
-                return _isNewVersionChecked;
-            }
-        }
+        public bool IsNewVersionCheckedAndUpToDate { get; private set; }
 
-        public bool SettingsBackupRestoreMessageVisible
-        {
-            get
-            {
-                return _settingsBackupRestoreMessageVisible;
-            }
-        }
+        public bool SettingsBackupRestoreMessageVisible { get; private set; }
 
-        public string BackupRestoreMessageSeverity
-        {
-            get
-            {
-                return _backupRestoreMessageSeverity;
-            }
-        }
+        public string BackupRestoreMessageSeverity { get; private set; }
 
-        public string SettingsBackupMessage
-        {
-            get
-            {
-                return _settingsBackupMessage;
-            }
-        }
+        public string SettingsBackupMessage { get; private set; }
 
         public bool IsDownloadAllowed
         {
@@ -672,13 +636,13 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
             }
 
             var results = SettingsUtils.RestoreSettings();
-            _backupRestoreMessageSeverity = results.severity;
+            BackupRestoreMessageSeverity = results.severity;
 
             if (!results.success)
             {
-                _settingsBackupRestoreMessageVisible = true;
+                SettingsBackupRestoreMessageVisible = true;
 
-                _settingsBackupMessage = GetResourceString(results.message);
+                SettingsBackupMessage = GetResourceString(results.message);
 
                 NotifyAllBackupAndRestoreProperties();
 
@@ -708,9 +672,9 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
 
             var results = SettingsUtils.BackupSettings();
 
-            _settingsBackupRestoreMessageVisible = true;
-            _backupRestoreMessageSeverity = results.severity;
-            _settingsBackupMessage = GetResourceString(results.message);
+            SettingsBackupRestoreMessageVisible = true;
+            BackupRestoreMessageSeverity = results.severity;
+            SettingsBackupMessage = GetResourceString(results.message);
 
             // now we do a dry run to get the results for "setting match"
             var settingsUtils = new SettingsUtils();
@@ -740,9 +704,9 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
             IsNewVersionDownloading = string.IsNullOrEmpty(UpdatingSettingsConfig.DownloadedInstallerFilename);
             NotifyPropertyChanged(nameof(IsDownloadAllowed));
 
-            if (_isNewVersionChecked)
+            if (IsNewVersionCheckedAndUpToDate)
             {
-                _isNewVersionChecked = !IsNewVersionDownloading;
+                IsNewVersionCheckedAndUpToDate = !IsNewVersionDownloading;
                 NotifyPropertyChanged(nameof(IsNewVersionCheckedAndUpToDate));
             }
 
@@ -838,7 +802,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
         /// </remarks>
         public void HideBackupAndRestoreMessageArea()
         {
-            _settingsBackupRestoreMessageVisible = false;
+            SettingsBackupRestoreMessageVisible = false;
             NotifyAllBackupAndRestoreProperties();
         }
 
@@ -879,7 +843,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
                 PowerToysNewAvailableVersionLink = UpdatingSettingsConfig.ReleasePageLink;
                 UpdateCheckedDate = UpdatingSettingsConfig.LastCheckedDateLocalized;
 
-                _isNewVersionChecked = PowerToysUpdatingState == UpdatingSettings.UpdatingState.UpToDate && !IsNewVersionDownloading;
+                IsNewVersionCheckedAndUpToDate = PowerToysUpdatingState == UpdatingSettings.UpdatingState.UpToDate && !IsNewVersionDownloading;
                 NotifyPropertyChanged(nameof(IsNewVersionCheckedAndUpToDate));
 
                 NotifyPropertyChanged(nameof(IsDownloadAllowed));
