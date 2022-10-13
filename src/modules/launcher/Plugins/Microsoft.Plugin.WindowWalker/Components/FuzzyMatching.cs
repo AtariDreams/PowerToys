@@ -103,7 +103,7 @@ namespace Microsoft.Plugin.WindowWalker.Components
                     }
                     else if (matches[firstIndex, secondIndex])
                     {
-                        var tempList = results.Where(x => x.Count == secondIndex && x[x.Count - 1] < firstIndex).Select(x => x.ToList()).ToList();
+                        var tempList = results.Where(x => x.Count == secondIndex && x[^1] < firstIndex).Select(x => x.ToList()).ToList();
 
                         foreach (var pathSofar in tempList)
                         {

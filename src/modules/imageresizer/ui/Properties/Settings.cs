@@ -73,16 +73,15 @@ namespace ImageResizer.Properties
 
         // Using OrdinalIgnoreCase since this is internal and used for comparison with symbols
         public string FileNameFormat
-            => _fileNameFormat
-                ?? (_fileNameFormat = FileName
-                    .Replace("{", "{{", StringComparison.OrdinalIgnoreCase)
-                    .Replace("}", "}}", StringComparison.OrdinalIgnoreCase)
-                    .Replace("%1", "{0}", StringComparison.OrdinalIgnoreCase)
-                    .Replace("%2", "{1}", StringComparison.OrdinalIgnoreCase)
-                    .Replace("%3", "{2}", StringComparison.OrdinalIgnoreCase)
-                    .Replace("%4", "{3}", StringComparison.OrdinalIgnoreCase)
-                    .Replace("%5", "{4}", StringComparison.OrdinalIgnoreCase)
-                    .Replace("%6", "{5}", StringComparison.OrdinalIgnoreCase));
+            => _fileNameFormat ??= FileName
+                .Replace("{", "{{", StringComparison.OrdinalIgnoreCase)
+                .Replace("}", "}}", StringComparison.OrdinalIgnoreCase)
+                .Replace("%1", "{0}", StringComparison.OrdinalIgnoreCase)
+                .Replace("%2", "{1}", StringComparison.OrdinalIgnoreCase)
+                .Replace("%3", "{2}", StringComparison.OrdinalIgnoreCase)
+                .Replace("%4", "{3}", StringComparison.OrdinalIgnoreCase)
+                .Replace("%5", "{4}", StringComparison.OrdinalIgnoreCase)
+                .Replace("%6", "{5}", StringComparison.OrdinalIgnoreCase);
 
         [JsonIgnore]
         public ResizeSize SelectedSize

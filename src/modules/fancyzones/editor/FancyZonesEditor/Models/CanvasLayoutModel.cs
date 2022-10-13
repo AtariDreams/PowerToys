@@ -121,7 +121,7 @@ namespace FancyZonesEditor.Models
             {
                 _topLeft = DefaultOffset;
             }
-            else if (_topLeft == Zones[Zones.Count - 1].X)
+            else if (_topLeft == Zones[^1].X)
             {
                 _topLeft += OffsetShift;
             }

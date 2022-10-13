@@ -15,10 +15,7 @@ namespace CommonLibTest
     {
         private static Task<SettingsRepository<GeneralSettings>> GetSettingsRepository(ISettingsUtils settingsUtils)
         {
-            return Task.Run(() =>
-            {
-                return SettingsRepository<GeneralSettings>.GetInstance(settingsUtils);
-            });
+            return Task.Run(() => SettingsRepository<GeneralSettings>.GetInstance(settingsUtils));
         }
 
         [TestMethod]

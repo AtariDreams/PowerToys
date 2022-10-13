@@ -22,7 +22,7 @@ namespace Microsoft.PowerToys.Settings.UI.Controls
 
         public object Content
         {
-            get => (object)GetValue(ContentProperty);
+            get => GetValue(ContentProperty);
             set => SetValue(ContentProperty, value);
         }
 
@@ -53,7 +53,7 @@ namespace Microsoft.PowerToys.Settings.UI.Controls
         protected override void OnApplyTemplate()
         {
             IsEnabledChanged -= KeyVisual_IsEnabledChanged;
-            _keyVisual = (KeyVisual)this;
+            _keyVisual = this;
             _keyPresenter = (ContentPresenter)_keyVisual.GetTemplateChild(KeyPresenter);
             Update();
             SetEnabledState();
@@ -117,10 +117,12 @@ namespace Microsoft.PowerToys.Settings.UI.Controls
                         case 91: // The left Windows key
                         case 92: // The right Windows key
                             PathIcon winIcon = XamlReader.Load(@"<PathIcon xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" Data=""M9,17V9h8v8ZM0,17V9H8v8ZM9,8V0h8V8ZM0,8V0H8V8Z"" />") as PathIcon;
-                            Viewbox winIconContainer = new Viewbox();
-                            winIconContainer.Child = winIcon;
-                            winIconContainer.HorizontalAlignment = HorizontalAlignment.Center;
-                            winIconContainer.VerticalAlignment = VerticalAlignment.Center;
+                            Viewbox winIconContainer = new Viewbox
+                            {
+                                Child = winIcon,
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                                VerticalAlignment = VerticalAlignment.Center,
+                            };
 
                             double iconDimensions = GetIconSize();
                             winIconContainer.Height = iconDimensions;

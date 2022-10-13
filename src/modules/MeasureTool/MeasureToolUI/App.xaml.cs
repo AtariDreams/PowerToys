@@ -35,7 +35,7 @@ namespace MeasureToolUI
             var cmdArgs = Environment.GetCommandLineArgs();
             if (cmdArgs?.Length > 1)
             {
-                if (int.TryParse(cmdArgs[cmdArgs.Length - 1], out int powerToysRunnerPid))
+                if (int.TryParse(cmdArgs[^1], out int powerToysRunnerPid))
                 {
                     var dispatcher = DispatcherQueue.GetForCurrentThread();
                     RunnerHelper.WaitForPowerToysRunner(powerToysRunnerPid, () =>

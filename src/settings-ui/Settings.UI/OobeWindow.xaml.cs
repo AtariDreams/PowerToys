@@ -74,20 +74,11 @@ namespace Microsoft.PowerToys.Settings.UI
                 shellPage.NavigateToModule(this.initialModule);
             }
 
-            OobeShellPage.SetRunSharedEventCallback(() =>
-            {
-                return Constants.PowerLauncherSharedEvent();
-            });
+            OobeShellPage.SetRunSharedEventCallback(Constants.PowerLauncherSharedEvent);
 
-            OobeShellPage.SetColorPickerSharedEventCallback(() =>
-            {
-                return Constants.ShowColorPickerSharedEvent();
-            });
+            OobeShellPage.SetColorPickerSharedEventCallback(Constants.ShowColorPickerSharedEvent);
 
-            OobeShellPage.SetOpenMainWindowCallback((Type type) =>
-            {
-                App.OpenSettingsWindow(type);
-            });
+            OobeShellPage.SetOpenMainWindowCallback(App.OpenSettingsWindow);
         }
 
         private void OobeWindow_SizeChanged(object sender, WindowSizeChangedEventArgs args)

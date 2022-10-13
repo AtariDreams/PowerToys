@@ -18,12 +18,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
 
         public PowerLauncherPluginViewModel(PowerLauncherPluginSettings settings, Func<bool> isDark)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings), "PowerLauncherPluginSettings object is null");
-            }
-
-            this.settings = settings;
+            this.settings = settings ?? throw new ArgumentNullException(nameof(settings), "PowerLauncherPluginSettings object is null");
             this.isDark = isDark;
             foreach (var item in AdditionalOptions)
             {
@@ -138,12 +133,8 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
         {
             get
             {
-                if (_additionalOptions == null)
-                {
-                    _additionalOptions = settings.AdditionalOptions.Select(x => new PluginAdditionalOptionViewModel(x)).ToList();
-                }
-
-                return _additionalOptions;
+                return _additionalOptions ??= settings.AdditionalOptions
+                    .Select(x => new PluginAdditionalOptionViewModel(x)).ToList();
             }
         }
 
