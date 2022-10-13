@@ -25,7 +25,7 @@ namespace Microsoft.PowerToys.Settings.UI.Behaviors
             set { SetValue(DefaultHeaderProperty, value); }
         }
 
-        public static readonly DependencyProperty DefaultHeaderProperty = DependencyProperty.Register("DefaultHeader", typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => current.UpdateHeader()));
+        public static readonly DependencyProperty DefaultHeaderProperty = DependencyProperty.Register(nameof(DefaultHeader), typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => current.UpdateHeader()));
 
         public static NavigationViewHeaderMode GetHeaderMode(Page item)
         {
