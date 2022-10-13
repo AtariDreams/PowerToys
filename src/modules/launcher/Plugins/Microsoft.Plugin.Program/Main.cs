@@ -203,7 +203,7 @@ namespace Microsoft.Plugin.Program
             {
                 if (disposing)
                 {
-                    if (_context != null && _context.API != null)
+                    if (_context is { API: { } })
                     {
                         _context.API.ThemeChanged -= OnThemeChanged;
                     }

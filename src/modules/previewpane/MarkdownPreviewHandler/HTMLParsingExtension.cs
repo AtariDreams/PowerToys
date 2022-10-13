@@ -88,14 +88,11 @@ namespace Microsoft.PowerToys.PreviewHandler.Markdown
                 }
                 else if (node is Inline)
                 {
-                    if (node is LinkInline link)
+                    if (node is LinkInline { IsImage: true } link)
                     {
-                        if (link.IsImage)
-                        {
-                            link.Url = "#";
-                            link.GetAttributes().AddClass("img-fluid");
-                            imagesBlockedCallBack();
-                        }
+                        link.Url = "#";
+                        link.GetAttributes().AddClass("img-fluid");
+                        imagesBlockedCallBack();
                     }
                 }
             }

@@ -190,7 +190,7 @@ namespace PowerLauncher.ViewModel
                     var result = results.SelectedItem.Result;
 
                     // SelectedItem returns null if selection is empty.
-                    if (result != null && result.Action != null)
+                    if (result is { Action: { } })
                     {
                         Hide();
 
@@ -541,7 +541,7 @@ namespace PowerLauncher.ViewModel
                 var queryText = QueryText.Trim();
 
                 var pluginQueryPairs = QueryBuilder.Build(queryText);
-                if (pluginQueryPairs != null && pluginQueryPairs.Count > 0)
+                if (pluginQueryPairs is { Count: > 0 })
                 {
                     queryText = pluginQueryPairs.Values.First().RawQuery;
                     _currentQuery = queryText;

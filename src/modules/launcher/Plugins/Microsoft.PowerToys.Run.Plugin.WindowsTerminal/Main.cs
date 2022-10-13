@@ -185,7 +185,7 @@ namespace Microsoft.PowerToys.Run.Plugin.WindowsTerminal
             var openQuake = false;
             var showHiddenProfiles = false;
 
-            if (settings != null && settings.AdditionalOptions != null)
+            if (settings is { AdditionalOptions: { } })
             {
                 openNewTab = settings.AdditionalOptions.FirstOrDefault(x => x.Key == OpenNewTab)?.Value ?? false;
                 openQuake = settings.AdditionalOptions.FirstOrDefault(x => x.Key == OpenQuake)?.Value ?? false;

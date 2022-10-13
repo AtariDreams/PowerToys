@@ -183,7 +183,7 @@ namespace Microsoft.Plugin.Uri
         {
             if (!_disposed && disposing)
             {
-                if (Context != null && Context.API != null)
+                if (Context is { API: { } })
                 {
                     Context.API.ThemeChanged -= OnThemeChanged;
                 }

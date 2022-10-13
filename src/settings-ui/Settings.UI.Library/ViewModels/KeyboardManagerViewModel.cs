@@ -202,7 +202,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.ViewModels
         {
             try
             {
-                if (editor != null && editor.HasExited)
+                if (editor is { HasExited: true })
                 {
                     Logger.LogInfo($"Previous instance of {PowerToyName} editor exited");
                     editor = null;

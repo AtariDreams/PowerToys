@@ -164,7 +164,7 @@ namespace Microsoft.PowerToys.ThumbnailHandler.Gcode
                 {
                     using (Bitmap thumbnail = GetThumbnail(reader, cx))
                     {
-                        if (thumbnail != null && thumbnail.Size.Width > 0 && thumbnail.Size.Height > 0)
+                        if (thumbnail is { Size: { Width: > 0, Height: > 0 } })
                         {
                             phbmp = thumbnail.GetHbitmap(Color.Transparent);
                             pdwAlpha = WTS_ALPHATYPE.WTSAT_ARGB;

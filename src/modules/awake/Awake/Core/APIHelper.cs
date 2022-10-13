@@ -87,7 +87,7 @@ namespace Awake.Core
 
             try
             {
-                if (_runnerThread != null && !_runnerThread.IsCanceled)
+                if (_runnerThread is { IsCanceled: false })
                 {
                     _runnerThread.Wait(_threadToken);
                 }
@@ -118,7 +118,7 @@ namespace Awake.Core
 
             try
             {
-                if (_runnerThread != null && !_runnerThread.IsCanceled)
+                if (_runnerThread is { IsCanceled: false })
                 {
                     _runnerThread.Wait(_threadToken);
                 }
@@ -135,7 +135,7 @@ namespace Awake.Core
 
             try
             {
-                if (_runnerThread != null && !_runnerThread.IsCanceled)
+                if (_runnerThread is { IsCanceled: false })
                 {
                     _runnerThread.Wait(_threadToken);
                 }

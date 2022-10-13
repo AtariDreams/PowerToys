@@ -92,7 +92,7 @@ namespace Microsoft.PowerToys.Settings.UI
             var cmdArgs = Environment.GetCommandLineArgs();
             var isDark = IsDarkTheme();
 
-            if (cmdArgs != null && cmdArgs.Length >= RequiredArgumentsQty)
+            if (cmdArgs is { Length: >= RequiredArgumentsQty })
             {
                 // Skip the first argument which is prepended when launched by explorer
                 if (cmdArgs[0].EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase) && cmdArgs[1].EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase) && (cmdArgs.Length >= RequiredArgumentsQty + 1))

@@ -156,7 +156,7 @@ namespace Microsoft.PowerToys.Run.Plugin.Calculator
             var inputUseEnglishFormat = false;
             var outputUseEnglishFormat = false;
 
-            if (settings != null && settings.AdditionalOptions != null)
+            if (settings is { AdditionalOptions: { } })
             {
                 var optionInputEn = settings.AdditionalOptions.FirstOrDefault(x => x.Key == "InputUseEnglishFormat");
                 inputUseEnglishFormat = optionInputEn?.Value ?? inputUseEnglishFormat;
@@ -181,7 +181,7 @@ namespace Microsoft.PowerToys.Run.Plugin.Calculator
             {
                 if (disposing)
                 {
-                    if (Context != null && Context.API != null)
+                    if (Context is { API: { } })
                     {
                         Context.API.ThemeChanged -= OnThemeChanged;
                     }

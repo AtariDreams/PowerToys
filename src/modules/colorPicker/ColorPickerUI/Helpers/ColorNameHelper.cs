@@ -201,19 +201,19 @@ namespace ColorPicker.Helpers
 
             // If we have a chromatic color, we need to first get the hue limits for the saturation value.
             int[] pHueLimits;
-            if (sat > 20 && sat <= 75)
+            if (sat is > 20 and <= 75)
             {
                 pHueLimits = hueLimitsForSatLevel1;
             }
-            else if (sat > 75 && sat <= 115)
+            else if (sat is > 75 and <= 115)
             {
                 pHueLimits = hueLimitsForSatLevel2;
             }
-            else if (sat > 115 && sat <= 150)
+            else if (sat is > 115 and <= 150)
             {
                 pHueLimits = hueLimitsForSatLevel3;
             }
-            else if (sat > 150 && sat <= 240)
+            else if (sat is > 150 and <= 240)
             {
                 pHueLimits = hueLimitsForSatLevel4;
             }

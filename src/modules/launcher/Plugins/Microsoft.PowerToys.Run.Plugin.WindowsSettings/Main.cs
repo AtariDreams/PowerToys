@@ -190,7 +190,7 @@ namespace Microsoft.PowerToys.Run.Plugin.WindowsSettings
                 return;
             }
 
-            if (_context != null && _context.API != null)
+            if (_context is { API: { } })
             {
                 _context.API.ThemeChanged -= OnThemeChanged;
             }

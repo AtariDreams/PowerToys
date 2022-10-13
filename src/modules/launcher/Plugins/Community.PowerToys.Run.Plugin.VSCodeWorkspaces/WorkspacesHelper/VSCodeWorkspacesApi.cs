@@ -21,7 +21,7 @@ namespace Community.PowerToys.Run.Plugin.VSCodeWorkspaces.WorkspacesHelper
 
         private VSCodeWorkspace ParseVSCodeUri(string uri, VSCodeInstance vscodeInstance, bool isWorkspace = false)
         {
-            if (uri != null && uri is string)
+            if (uri is string)
             {
                 string unescapeUri = Uri.UnescapeDataString(uri);
                 var typeWorkspace = WorkspacesHelper.ParseVSCodeUri.GetWorkspaceEnvironment(unescapeUri);
@@ -93,7 +93,7 @@ namespace Community.PowerToys.Run.Plugin.VSCodeWorkspaces.WorkspacesHelper
             {
                 VSCodeStorageFile vscodeStorageFile = JsonSerializer.Deserialize<VSCodeStorageFile>(fileContent);
 
-                if (vscodeStorageFile != null && vscodeStorageFile.OpenedPathsList != null)
+                if (vscodeStorageFile is { OpenedPathsList: { } })
                 {
                     // for previous versions of vscode
                     if (vscodeStorageFile.OpenedPathsList.Workspaces3 != null)
@@ -115,7 +115,7 @@ namespace Community.PowerToys.Run.Plugin.VSCodeWorkspaces.WorkspacesHelper
                         {
                             bool isWorkspaceFile = false;
                             var uri = entry.FolderUri;
-                            if (entry.Workspace != null && entry.Workspace.ConfigPath != null)
+                            if (entry.Workspace is { ConfigPath: { } })
                             {
                                 isWorkspaceFile = true;
                                 uri = entry.Workspace.ConfigPath;
@@ -168,7 +168,7 @@ namespace Community.PowerToys.Run.Plugin.VSCodeWorkspaces.WorkspacesHelper
                                 {
                                     bool isWorkspaceFile = false;
                                     var uri = entry.FolderUri;
-                                    if (entry.Workspace != null && entry.Workspace.ConfigPath != null)
+                                    if (entry.Workspace is { ConfigPath: { } })
                                     {
                                         isWorkspaceFile = true;
                                         uri = entry.Workspace.ConfigPath;

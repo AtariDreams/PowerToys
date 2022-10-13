@@ -271,14 +271,11 @@ namespace PowerLauncher
         private void SuggestionsList_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             var result = ((FrameworkElement)e.OriginalSource).DataContext;
-            if (result != null)
-            {
+            if (result is ResultViewModel resultVM)
                 // This may be null if the tapped item was one of the context buttons (run as admin etc).
-                if (result is ResultViewModel resultVM)
-                {
-                    _viewModel.Results.SelectedItem = resultVM;
-                    _viewModel.OpenResultWithMouseCommand.Execute(null);
-                }
+            {
+                _viewModel.Results.SelectedItem = resultVM;
+                _viewModel.OpenResultWithMouseCommand.Execute(null);
             }
         }
 

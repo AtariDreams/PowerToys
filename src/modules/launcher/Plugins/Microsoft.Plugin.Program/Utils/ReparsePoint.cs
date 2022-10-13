@@ -366,8 +366,7 @@ namespace Microsoft.Plugin.Program.Utils
             {
                 uint uintVersion = (uint)version;
 
-                if (uintVersion > (uint)AppExecutionAliasReparseTagBufferLayoutVersion.Invalid &&
-                    uintVersion < (uint)AppExecutionAliasReparseTagBufferLayoutVersion.UpperBound)
+                if (uintVersion is > (uint)AppExecutionAliasReparseTagBufferLayoutVersion.Invalid and < (uint)AppExecutionAliasReparseTagBufferLayoutVersion.UpperBound)
                 {
                     return;
                 }

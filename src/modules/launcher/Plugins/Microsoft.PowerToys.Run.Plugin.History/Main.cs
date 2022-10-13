@@ -238,7 +238,7 @@ namespace Microsoft.PowerToys.Run.Plugin.History
             {
                 if (disposing)
                 {
-                    if (Context != null && Context.API != null)
+                    if (Context is { API: { } })
                     {
                         Context.API.ThemeChanged -= OnThemeChanged;
                     }

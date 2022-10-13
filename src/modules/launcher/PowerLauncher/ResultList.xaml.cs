@@ -27,7 +27,7 @@ namespace PowerLauncher
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
             {
                 DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is TypeChildItem)
+                if (child is TypeChildItem)
                 {
                     return (TypeChildItem)child;
                 }

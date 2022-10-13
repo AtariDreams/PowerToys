@@ -183,7 +183,7 @@ namespace Microsoft.PowerToys.Run.Plugin.System
             var localizeSystemCommands = true;
             var reduceNetworkResultScore = true;
 
-            if (settings != null && settings.AdditionalOptions != null)
+            if (settings is { AdditionalOptions: { } })
             {
                 var optionConfirm = settings.AdditionalOptions.FirstOrDefault(x => x.Key == "ConfirmSystemCommands");
                 confirmSystemCommands = optionConfirm?.Value ?? confirmSystemCommands;

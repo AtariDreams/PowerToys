@@ -133,7 +133,7 @@ namespace Microsoft.PowerToys.ThumbnailHandler.Stl
 
                     using (Bitmap thumbnail = GetThumbnail(memStream, cx))
                     {
-                        if (thumbnail != null && thumbnail.Size.Width > 0 && thumbnail.Size.Height > 0)
+                        if (thumbnail is { Size: { Width: > 0, Height: > 0 } })
                         {
                             phbmp = thumbnail.GetHbitmap(System.Drawing.Color.Transparent);
                             pdwAlpha = WTS_ALPHATYPE.WTSAT_ARGB;

@@ -296,7 +296,7 @@ namespace Microsoft.PowerToys.ThumbnailHandler.Svg
             {
                 using (Bitmap thumbnail = GetThumbnail(svgData, cx))
                 {
-                    if (thumbnail != null && thumbnail.Size.Width > 0 && thumbnail.Size.Height > 0)
+                    if (thumbnail is { Size: { Width: > 0, Height: > 0 } })
                     {
                         phbmp = thumbnail.GetHbitmap();
                         pdwAlpha = WTS_ALPHATYPE.WTSAT_RGB;

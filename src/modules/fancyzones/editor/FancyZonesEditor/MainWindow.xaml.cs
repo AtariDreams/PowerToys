@@ -75,7 +75,7 @@ namespace FancyZonesEditor
         // Prevent closing the dialog with enter
         private void MainWindow_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter && _openedDialog != null && _openedDialog.IsVisible)
+            if (e.Key == Key.Enter && _openedDialog is { IsVisible: true })
             {
                 if (e.OriginalSource is RadioButton source && source.IsChecked != true)
                 {
