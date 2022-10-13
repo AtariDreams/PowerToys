@@ -117,9 +117,7 @@ namespace Microsoft.Plugin.WindowWalker.Components
         private List<SearchResult> FuzzySearchOpenWindows(List<Window> openWindows)
         {
             List<SearchResult> result = new List<SearchResult>();
-            List<SearchString> searchStrings = new List<SearchString>();
-
-            searchStrings.Add(new SearchString(searchText, SearchResult.SearchType.Fuzzy));
+            List<SearchString> searchStrings = new List<SearchString> { new SearchString(searchText, SearchResult.SearchType.Fuzzy) };
 
             foreach (var searchString in searchStrings)
             {

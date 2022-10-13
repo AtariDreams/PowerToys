@@ -16,8 +16,7 @@ namespace FancyZonesEditor
         // result[k] is the sum of the first k elements of the given list.
         public static List<int> PrefixSum(List<int> list)
         {
-            var result = new List<int>(list.Count + 1);
-            result.Add(0);
+            var result = new List<int>(list.Count + 1) { 0 };
 
             int sum = 0;
             for (int i = 0; i < list.Count; i++)

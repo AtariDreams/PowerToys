@@ -17,10 +17,12 @@ namespace Microsoft.PowerToys.Settings.UI.Library
             ChangeCursor = false;
             ColorHistory = new List<string>();
             ColorHistoryLimit = 20;
-            VisibleColorFormats = new Dictionary<string, bool>();
-            VisibleColorFormats.Add("HEX", true);
-            VisibleColorFormats.Add("RGB", true);
-            VisibleColorFormats.Add("HSL", true);
+            VisibleColorFormats = new Dictionary<string, bool>
+            {
+                { "HEX", true },
+                { "RGB", true },
+                { "HSL", true }
+            };
             ShowColorName = false;
             ActivationAction = ColorPickerActivationAction.OpenColorPickerAndThenEditor;
         }

@@ -217,8 +217,7 @@ namespace Microsoft.PowerToys.Run.Plugin.WindowsSettings.Helper
             // Init vars
             var queryElements = queryString.Split('>');
 
-            List<string> settingsPath = new List<string>();
-            settingsPath.Add(found.Type);
+            List<string> settingsPath = new List<string> { found.Type };
             if (!(found.Areas is null))
             {
                 settingsPath.AddRange(found.Areas);
