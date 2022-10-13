@@ -9,11 +9,11 @@ namespace Microsoft.PowerToys.Settings.UI.Library.CustomAction
 {
     public class SendCustomAction
     {
-        private readonly string moduleName;
+        private readonly string _moduleName;
 
         public SendCustomAction(string moduleName)
         {
-            this.moduleName = moduleName;
+            this._moduleName = moduleName;
         }
 
         [JsonPropertyName("action")]
@@ -26,7 +26,7 @@ namespace Microsoft.PowerToys.Settings.UI.Library.CustomAction
                 PropertyNamingPolicy = new CustomNamePolicy((propertyName) =>
                 {
                     // Using Ordinal as this is an internal property name
-                    return propertyName.Equals("ModuleAction", System.StringComparison.Ordinal) ? moduleName : propertyName;
+                    return propertyName.Equals("ModuleAction", System.StringComparison.Ordinal) ? _moduleName : propertyName;
                 }),
             };
 
